@@ -1,11 +1,10 @@
 # Full stack application Django + React With Live server
-# Django
-  # Main packages
-  1) Djoser
-  2) simplejwt
-  3) rest_framewok 
-  4) corsheaders 
-  5) django_json_widget(to make it easier to see orders in the django admin panel)
+ # Django Main packages
+   1) Djoser
+   2) simplejwt
+   3) rest_framewok 
+   4) corsheaders 
+   5) django_json_widget(to make it easier to see orders in the django admin panel)
 
   # Authorization
   i made two types of authorization
@@ -18,11 +17,10 @@
   2) with cash, Well, it is clear that the customer will pay upon receiving the order in hand.
 
   # Orders
-  after customer made an order, as admin we can seen all the necessary information.
-  costumer on client side also can seen his order and all information of order
+  1) after customer made an order, as admin we can seen all the necessary information.
+  2) costumer on client side also can seen his order and all information of order
   
-# React + Vite + Typescript
-  # Main packages
+# React + Vite + Typescript Main packages
   1) Redux & Redux/toolkit & Rtk query (for state managments and api calls)
   2) Tailwind (for styles)
   3) react-hook-form & yup (for data validations)
