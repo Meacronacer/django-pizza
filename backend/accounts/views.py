@@ -10,7 +10,6 @@ class LoginWithGoogle(APIView):
         if 'code' in request.data.keys():
             code = request.data['code']
             id_token = get_google_id_token(code)
-            #return Response({"id_token": id_token})
             user = authenticate_or_create_user(id_token)
             refresh = get_jwt_token(user)
             serializer = UserGoogleSerialzer(user)

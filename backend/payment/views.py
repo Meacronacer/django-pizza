@@ -19,11 +19,9 @@ class StripeCheckoutView(APIView):
     def post(self, request):
         try:
 
-            #print(request.data['orderData']['orderItems'])
-
             data = request.data['orderData']
-            
             items = []
+
             for i in data['orderItems'].keys():
                i = data['orderItems'][i]
                desc = ', '.join([i.get('name') for i in i.get('extra').values()]) + i.get('extra_info')
@@ -130,20 +128,14 @@ def stripe_webhook_view(request):
         session = event['data']['object']
 
         data = stripe.checkout.Session.list_line_items(session['id'], expand=['data.price.product'])
-        print(session)
-        print('----------------------------------------------------------------------------')
-        print(data)
-        print('----------------------------------------------------------------------------')
-
         items = {}
+
         for i in range(len(data.get('data'))):
             item = data.get('data')[i]
             extra = {}
             try:
-                #print('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++')
                 ingredients = Ingredients.objects.filter(name__in=item['price']['product']['description'].replace('+ ', '').split(', '))
                 serializedIngr = IngredientsSerializer(ingredients, many=True, remove_fields=['id'])
-                #print(serializedIngr.data)
 
                 for j in serializedIngr.data:
                     extra[j['name']] = j                
@@ -186,11 +178,8 @@ def stripe_webhook_view(request):
 
     if event.type == 'payment_intent.succeeded':
         payment_intent = event.data.object # contains a stripe.PaymentIntent
-        #print(payment_intent)
     elif event.type == 'payment_method.attached':
         payment_method = event.data.object # contains a stripe.PaymentMethod
-        #print(payment_method)
-    # ... handle other event types
     else:
         print('Unhandled event type {}'.format(event.type))
 
