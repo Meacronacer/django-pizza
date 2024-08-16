@@ -1,6 +1,6 @@
 from rest_framework import generics, status
 from .models import Product
-from .serializers import ProductSerializer, ProductGroupSerializer
+from .serializers import ProductSerializer
 from rest_framework.response import Response
 
 

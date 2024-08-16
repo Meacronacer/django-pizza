@@ -36,39 +36,39 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ProductGroupSerializer(serializers.ModelSerializer):
-    snacks = serializers.SerializerMethodField()
-    # beverages = serializers.SerializerMethodField()
-    # cocktails = serializers.SerializerMethodField()
-    # cofe = serializers.SerializerMethodField()
-    # deserts = serializers.SerializerMethodField()
-    # sauces = serializers.SerializerMethodField()
+# class ProductGroupSerializer(serializers.ModelSerializer):
+#     snacks = serializers.SerializerMethodField()
+#     # beverages = serializers.SerializerMethodField()
+#     # cocktails = serializers.SerializerMethodField()
+#     # cofe = serializers.SerializerMethodField()
+#     # deserts = serializers.SerializerMethodField()
+#     # sauces = serializers.SerializerMethodField()
 
-    class Meta:
-        model = Product
-        fields = ('snacks', )
+#     class Meta:
+#         model = Product
+#         fields = ('snacks', )
 
-    def _build_account_list(self, product_type):
-        get_product = Product.objects.filter(product_type=product_type)
-        serializer = ProductSerializer(get_product, many=True)
-        return serializer.data
+#     def _build_account_list(self, product_type):
+#         get_product = Product.objects.filter(product_type=product_type)
+#         serializer = ProductSerializer(get_product, many=True)
+#         return serializer.data
 
-    def get_snacks(self, obj):
-        return self._build_account_list(Product.SNACKS)
+#     def get_snacks(self, obj):
+#         return self._build_account_list(Product.SNACKS)
     
-    # def get_beverages(self, obj):
-    #     return self._build_account_list(Product.BEVERAGES)
+#     # def get_beverages(self, obj):
+#     #     return self._build_account_list(Product.BEVERAGES)
     
-    # def get_cocktails(self, obj):
-    #     return self._build_account_list(Product.COCKTAILS)
+#     # def get_cocktails(self, obj):
+#     #     return self._build_account_list(Product.COCKTAILS)
     
-    # def get_cofe(self, obj):
-    #     return self._build_account_list(Product.COFE)
+#     # def get_cofe(self, obj):
+#     #     return self._build_account_list(Product.COFE)
     
-    # def get_deserts(self, obj):
-    #     return self._build_account_list(Product.DESERTS)
+#     # def get_deserts(self, obj):
+#     #     return self._build_account_list(Product.DESERTS)
     
-    # def get_sauces(self, obj):
-    #     return self._build_account_list(Product.SAUCES)
+#     # def get_sauces(self, obj):
+#     #     return self._build_account_list(Product.SAUCES)
     
 
