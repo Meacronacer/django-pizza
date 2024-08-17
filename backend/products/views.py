@@ -5,7 +5,7 @@ from rest_framework.response import Response
 
 
 class ProductGroupApiView(generics.ListAPIView):
-    queryset = Product.objects.all()
+    queryset = Product.objects.all().select_related('name').prefetch_related('sizes').prefetch_related('ingredients')
     serializer_class = ProductSerializer    
 
     def get(self, request, *args, **kwargs):
@@ -14,9 +14,3 @@ class ProductGroupApiView(generics.ListAPIView):
       {group[product["product_type"]].append(product) for product in response.data}
 
       return Response(group, status=status.HTTP_200_OK)   
-
-
-class ProductApiView(generics.ListAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    lookup_field = 'name'
