@@ -1,11 +1,12 @@
 from rest_framework import generics, status
-from .models import Product
+from .models import Product, Sizes
 from .serializers import ProductSerializer
 from rest_framework.response import Response
+from django.db.models import Prefetch
 
 
 class ProductGroupApiView(generics.ListAPIView):
-    queryset = Product.objects.all().select_related('name').prefetch_related('sizes').prefetch_related('ingredients')
+    queryset = Product.objects.all().select_related('name').prefetch_related(Prefetch('sizes', queryset=Sizes.objects.all().order_by('size'))).prefetch_related('ingredients')
     serializer_class = ProductSerializer    
 
     def get(self, request, *args, **kwargs):
