@@ -71,7 +71,6 @@ class Product(models.Model):
     description = models.TextField(max_length=500, blank=True)
     ingredients = models.ManyToManyField(Ingredients, blank=True, related_name='ingredients')
     extra_info = models.CharField(max_length=50, blank=True)
-    slug = models.SlugField(blank=True)
 
     def __str__(self) -> str:
         return f'{self.product_type}'
